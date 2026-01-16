@@ -37,8 +37,49 @@ export type QrGenerateRequest = {
   /**
    * Optional error correction level.
    * Kept as string union to avoid importing qrcode types in shared code.
+   *
+   * NOTE: When using an icon overlay, the server should force this to "H"
+   * to preserve scannability.
    */
   errorCorrectionLevel?: 'L' | 'M' | 'Q' | 'H';
+
+  /**
+   * Optional center icon overlay configuration.
+   * If omitted, QR generation behaves as before (no icon).
+   *
+   * The server should:
+   * - Force errorCorrectionLevel "H"
+   * - Add white padding behind the icon
+   * - Keep the icon within a safe area (default ~20–25% of QR size)
+   */
+  icon?: {
+    /**
+     * Remote image URL (https://...) to fetch server-side.
+     * Mutually exclusive with `base64`.
+     */
+    url?: string;
+
+    /**
+     * Base64-encoded image input. Supports:
+     * - raw base64 (no prefix), or
+     * - full data URL (e.g. data:image/png;base64,...)
+     * Mutually exclusive with `url`.
+     */
+    base64?: string;
+
+    /**
+     * Icon size relative to QR size (0–1). Default: ~0.22.
+     * Example: 0.25 means icon is 25% of QR width/height.
+     */
+    scale?: number;
+
+    /**
+     * White padding around the icon, relative to QR size (0–1).
+     * Example: 0.03 means pad is ~3% of QR size.
+     * Server may clamp to safe range.
+     */
+    paddingScale?: number;
+  };
 };
 
 /**

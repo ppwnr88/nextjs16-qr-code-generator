@@ -19,10 +19,21 @@ export default function Page() {
     setErrorMessage(null);
 
     try {
+      const body: Record<string, unknown> = { text: values.text, size: values.size };
+
+      // Optional icon payload (backward compatible)
+      if (values.icon && values.icon.base64DataUrl) {
+        body.icon = {
+          base64: values.icon.base64DataUrl, // API accepts data URL or raw base64
+          scale: values.icon.scale,
+          paddingScale: values.icon.paddingScale,
+        };
+      }
+
       const res = await fetch('/api/qr', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: values.text, size: values.size }),
+        body: JSON.stringify(body),
       });
 
       const json = (await res.json()) as ApiResponse;
@@ -58,7 +69,7 @@ export default function Page() {
           </h1>
           <p className="text-pretty text-sm leading-6 text-muted-foreground sm:text-base">
             Enter a URL or plain text to generate a QR code server-side. Download the result as a
-            PNG.
+            PNG. Optionally, upload an icon to overlay at the center.
           </p>
         </header>
 
