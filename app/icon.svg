@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Minimal app icon for Next.js App Router.
+  This renders a clean QR-like mark on a rounded square background.
+-->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="512"
+  height="512"
+  viewBox="0 0 512 512"
+  role="img"
+  aria-label="gen-qr icon"
+>
+  <defs>
+    <style>
+      .bg { fill: #0b1220; }
+      .fg { fill: #ffffff; }
+      .muted { fill: #93c5fd; opacity: 0.22; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="512" height="512" rx="112" class="bg" />
+
+  <!-- Finder squares -->
+  <rect x="112" y="112" width="112" height="112" rx="18" class="fg" opacity="0.95"/>
+  <rect x="144" y="144" width="48" height="48" rx="12" class="bg" />
+
+  <rect x="288" y="112" width="112" height="112" rx="18" class="fg" opacity="0.95"/>
+  <rect x="320" y="144" width="48" height="48" rx="12" class="bg" />
+
+  <rect x="112" y="288" width="112" height="112" rx="18" class="fg" opacity="0.95"/>
+  <rect x="144" y="320" width="48" height="48" rx="12" class="bg" />
+
+  <!-- A few "modules" to suggest QR density -->
+  <rect x="286" y="286" width="26" height="26" rx="6" class="muted" />
+  <rect x="326" y="286" width="26" height="26" rx="6" class="fg" opacity="0.9" />
+  <rect x="366" y="286" width="26" height="26" rx="6" class="muted" />
+
+  <rect x="286" y="326" width="26" height="26" rx="6" class="fg" opacity="0.9" />
+  <rect x="326" y="326" width="26" height="26" rx="6" class="muted" />
+  <rect x="366" y="326" width="26" height="26" rx="6" class="fg" opacity="0.9" />
+
+  <rect x="286" y="366" width="26" height="26" rx="6" class="muted" />
+  <rect x="326" y="366" width="26" height="26" rx="6" class="fg" opacity="0.9" />
+  <rect x="366" y="366" width="26" height="26" rx="6" class="muted" />
+</svg>
