@@ -29,7 +29,7 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       boxShadow: {
-        soft: '0 10px 30px rgba(0,0,0,0.08)',
+        soft: '0 18px 50px rgba(0,0,0,0.28)',
       },
     },
   },

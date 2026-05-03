@@ -220,10 +220,10 @@ export default function QRForm(props: QRFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-xl space-y-5">
+    <form onSubmit={handleSubmit} className="w-full max-w-2xl space-y-5">
       <div className="space-y-2">
-        <label htmlFor="qr-text" className="block text-sm font-medium text-foreground">
-          Text or URL
+        <label htmlFor="qr-text" className="block text-sm font-semibold text-[#f8f8f2]">
+          input.payload
         </label>
 
         <textarea
@@ -231,27 +231,27 @@ export default function QRForm(props: QRFormProps) {
           name="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="https://example.com or any text…"
+          placeholder="https://example.com or any text..."
           rows={4}
           disabled={disabled}
           aria-invalid={Boolean(clientError || externalError)}
           className={[
-            'w-full resize-y rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground shadow-sm',
+            'w-full resize-y rounded-md border border-border/80 bg-[#07110f] px-3 py-3 text-sm text-[#f8f8f2] shadow-sm',
             'placeholder:text-muted-foreground',
-            'focus:outline-none focus:ring-2 focus:ring-ring',
+            'focus:outline-none focus:ring-2 focus:ring-ring/80',
             'disabled:cursor-not-allowed disabled:opacity-60',
           ].join(' ')}
         />
 
         <p className="text-xs text-muted-foreground">
-          Tip: URLs work best with fully qualified links (e.g. <span className="font-mono">https://…</span>).
+          Tip: URLs work best with fully qualified links (e.g. <span className="text-[#8be9fd]">https://...</span>).
         </p>
       </div>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:items-end">
         <div className="space-y-2">
-          <label htmlFor="qr-size" className="block text-sm font-medium text-foreground">
-            Size
+          <label htmlFor="qr-size" className="block text-sm font-semibold text-[#f8f8f2]">
+            output.size
           </label>
 
           <select
@@ -264,8 +264,8 @@ export default function QRForm(props: QRFormProps) {
             }}
             disabled={disabled}
             className={[
-              'w-full rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground shadow-sm',
-              'focus:outline-none focus:ring-2 focus:ring-ring',
+              'w-full rounded-md border border-border/80 bg-[#07110f] px-3 py-2.5 text-sm text-[#f8f8f2] shadow-sm',
+              'focus:outline-none focus:ring-2 focus:ring-ring/80',
               'disabled:cursor-not-allowed disabled:opacity-60',
             ].join(' ')}
           >
@@ -281,19 +281,19 @@ export default function QRForm(props: QRFormProps) {
           type="submit"
           disabled={disabled}
           className={[
-            'inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-soft',
-            'hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-ring',
+            'inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground shadow-soft',
+            'transition hover:translate-y-[-1px] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-ring/80',
             'disabled:cursor-not-allowed disabled:opacity-60',
           ].join(' ')}
         >
-          {disabled ? 'Generating…' : 'Generate QR'}
+          {disabled ? 'running...' : 'run generate'}
         </button>
       </div>
 
-      <div className="rounded-lg border border-border bg-background p-4">
+      <div className="rounded-lg border border-border/80 bg-[#07110f]/75 p-4">
         <div className="flex items-start justify-between gap-3">
           <div className="space-y-1">
-            <p className="text-sm font-medium text-foreground">Center Icon</p>
+            <p className="text-sm font-semibold text-[#f8f8f2]">--center-icon</p>
             <p className="text-xs text-muted-foreground">
               Upload an image to place it at the center of the QR (recommended for logos).
             </p>
@@ -305,7 +305,7 @@ export default function QRForm(props: QRFormProps) {
               checked={useIcon}
               onChange={(e) => setUseIcon(e.target.checked)}
               disabled={disabled}
-              className="h-4 w-4 rounded border-border"
+              className="h-4 w-4 rounded border-border accent-[#50fa7b]"
             />
             Enable
           </label>
@@ -313,8 +313,8 @@ export default function QRForm(props: QRFormProps) {
 
         <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <label htmlFor="qr-icon" className="block text-sm font-medium text-foreground">
-              Upload Icon (optional)
+            <label htmlFor="qr-icon" className="block text-sm font-semibold text-[#f8f8f2]">
+              icon.file
             </label>
 
             <input
@@ -337,7 +337,7 @@ export default function QRForm(props: QRFormProps) {
               }}
               className={[
                 'block w-full text-sm',
-                'file:mr-3 file:rounded-md file:border file:border-border file:bg-muted file:px-3 file:py-2 file:text-sm file:font-medium file:text-foreground',
+                'file:mr-3 file:rounded-md file:border file:border-border file:bg-muted file:px-3 file:py-2 file:text-sm file:font-semibold file:text-[#f8f8f2]',
                 'disabled:cursor-not-allowed disabled:opacity-60',
               ].join(' ')}
             />
@@ -347,7 +347,7 @@ export default function QRForm(props: QRFormProps) {
                 type="button"
                 disabled={disabled || !useIcon || !iconDataUrl}
                 onClick={() => setIconDataUrl('')}
-                className="inline-flex items-center justify-center rounded-md border border-border bg-background px-3 py-2 text-sm font-medium hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex items-center justify-center rounded-md border border-border bg-background px-3 py-2 text-sm font-semibold text-[#f8f8f2] transition hover:border-[#ff79c6]/70 hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Remove
               </button>
@@ -359,9 +359,9 @@ export default function QRForm(props: QRFormProps) {
           </div>
 
           <div className="space-y-2">
-            <p className="block text-sm font-medium text-foreground">Icon Preview</p>
+            <p className="block text-sm font-semibold text-[#f8f8f2]">icon.preview</p>
             <div className="flex items-center gap-3">
-              <div className="grid h-20 w-20 place-items-center rounded-lg border border-border bg-card">
+              <div className="grid h-20 w-20 shrink-0 place-items-center rounded-lg border border-border bg-background/80">
                 {useIcon && iconDataUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={iconDataUrl} alt="Icon preview" className="h-16 w-16 object-contain" />
@@ -384,7 +384,7 @@ export default function QRForm(props: QRFormProps) {
                     value={Math.round(iconScale * 100)}
                     disabled={disabled || !useIcon}
                     onChange={(e) => setIconScale(clamp(Number(e.target.value) / 100, 0.1, 0.3))}
-                    className="w-full"
+                    className="w-full accent-[#50fa7b]"
                   />
                 </div>
 
@@ -400,7 +400,7 @@ export default function QRForm(props: QRFormProps) {
       {(clientError || externalError) && (
         <div
           role="alert"
-          className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+          className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive"
         >
           {clientError ?? externalError}
         </div>

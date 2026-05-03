@@ -61,27 +61,46 @@ export default function Page() {
   }, []);
 
   return (
-    <main className="min-h-dvh bg-background text-foreground">
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-10 sm:px-6">
-        <header className="space-y-2">
-          <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-            QR Code Generator
-          </h1>
-          <p className="text-pretty text-sm leading-6 text-muted-foreground sm:text-base">
-            Enter a URL or plain text to generate a QR code server-side. Download the result as a
-            PNG. Optionally, upload an icon to overlay at the center.
-          </p>
-        </header>
+    <main className="terminal-grid min-h-dvh overflow-hidden bg-background text-foreground">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6 lg:py-10">
+        <section className="terminal-glow overflow-hidden rounded-lg border border-border/80 bg-card/95 backdrop-blur">
+          <div className="flex items-center justify-between border-b border-border/70 bg-muted/55 px-4 py-3">
+            <div className="flex items-center gap-2" aria-hidden="true">
+              <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+              <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+              <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+            </div>
+            <p className="text-xs font-medium text-muted-foreground">~/apps/gen-qr</p>
+            <p className="hidden text-xs text-[#8be9fd] sm:block">zsh</p>
+          </div>
 
-        <section className="rounded-xl border border-border bg-card p-4 shadow-soft sm:p-6">
-          <QRForm onGenerate={onGenerate} disabled={isLoading} externalError={errorMessage} />
+          <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_390px]">
+            <div className="space-y-7 border-b border-border/70 p-4 sm:p-6 lg:border-b-0 lg:border-r">
+              <header className="space-y-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#8be9fd]">
+                  $ gen-qr --modern
+                </p>
+                <div className="space-y-3">
+                  <h1 className="text-balance text-3xl font-semibold tracking-normal text-[#f8f8f2] sm:text-5xl">
+                    QR Code Generator
+                  </h1>
+                  <p className="max-w-2xl text-pretty text-sm leading-6 text-muted-foreground sm:text-base">
+                    Generate a clean QR code from a URL or text, then download the result as PNG.
+                    Add a center icon when you want it to feel more branded.
+                  </p>
+                </div>
+              </header>
+
+              <QRForm onGenerate={onGenerate} disabled={isLoading} externalError={errorMessage} />
+            </div>
+
+            <aside className="bg-background/35 p-4 sm:p-6">
+              <QRPreview dataUrl={dataUrl} isLoading={isLoading} errorMessage={errorMessage} />
+            </aside>
+          </div>
         </section>
 
-        <section className="rounded-xl border border-border bg-card p-4 shadow-soft sm:p-6">
-          <QRPreview dataUrl={dataUrl} isLoading={isLoading} errorMessage={errorMessage} />
-        </section>
-
-        <footer className="pt-2 text-center text-xs text-muted-foreground">
+        <footer className="text-center text-xs text-muted-foreground">
           Powered by Wannarat.cc
         </footer>
       </div>

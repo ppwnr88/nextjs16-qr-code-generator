@@ -2,61 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-  Global styles + design tokens.
-
-  - Uses CSS variables for light/dark theming.
-  - Tailwind config maps semantic colors like `bg-background` to these vars.
-  - Dark mode is class-based (`<html class="dark">`).
-*/
-
 :root {
-  /* Base */
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  --background: 218 22% 7%;
+  --foreground: 154 28% 90%;
 
-  /* Surfaces */
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --card: 218 24% 10%;
+  --card-foreground: 154 28% 90%;
 
-  /* Neutrals */
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+  --muted: 218 18% 15%;
+  --muted-foreground: 160 10% 66%;
 
-  /* Brand */
-  --primary: 221.2 83.2% 53.3%;
-  --primary-foreground: 210 40% 98%;
+  --primary: 154 70% 50%;
+  --primary-foreground: 216 30% 7%;
 
-  /* Feedback */
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: 2 78% 62%;
+  --destructive-foreground: 0 0% 100%;
 
-  /* Borders / focus */
-  --border: 214.3 31.8% 91.4%;
-  --ring: 221.2 83.2% 53.3%;
+  --border: 154 30% 22%;
+  --ring: 154 75% 54%;
 
-  /* Layout */
-  --radius: 12px;
+  --radius: 8px;
 }
 
 .dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
+  --background: 218 22% 7%;
+  --foreground: 154 28% 90%;
 
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
+  --card: 218 24% 10%;
+  --card-foreground: 154 28% 90%;
 
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
+  --muted: 218 18% 15%;
+  --muted-foreground: 160 10% 66%;
 
-  --primary: 217.2 91.2% 59.8%;
-  --primary-foreground: 222.2 84% 4.9%;
+  --primary: 154 70% 50%;
+  --primary-foreground: 216 30% 7%;
 
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: 2 78% 62%;
+  --destructive-foreground: 0 0% 100%;
 
-  --border: 217.2 32.6% 17.5%;
-  --ring: 224.3 76.3% 48%;
+  --border: 154 30% 22%;
+  --ring: 154 75% 54%;
 }
 
 @layer base {
@@ -73,6 +58,9 @@
   body {
     min-height: 100%;
     @apply bg-background text-foreground antialiased;
+    background:
+      linear-gradient(135deg, hsl(218 22% 7%) 0%, hsl(210 25% 9%) 42%, hsl(190 24% 7%) 100%);
+    font-family: "SF Mono", "Menlo", "Monaco", "Cascadia Code", "Roboto Mono", "Courier New", monospace;
     font-feature-settings: "rlig" 1, "calt" 1;
     text-rendering: optimizeLegibility;
   }
@@ -84,7 +72,7 @@
 
   :focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.35);
+    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.3), 0 0 24px hsl(var(--ring) / 0.16);
     border-radius: 8px;
   }
 }
@@ -146,5 +134,19 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .terminal-grid {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.14) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.14) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+
+  .terminal-glow {
+    box-shadow:
+      0 26px 80px hsl(0 0% 0% / 0.42),
+      0 0 0 1px hsl(var(--border) / 0.9),
+      inset 0 1px 0 hsl(0 0% 100% / 0.05);
   }
 }

@@ -147,10 +147,10 @@ export default function QRPreview(props: QRPreviewProps) {
 
   return (
     <section className="w-full">
-      <div className="rounded-lg border border-border bg-card text-card-foreground shadow-soft">
+      <div className="overflow-hidden rounded-lg border border-border/80 bg-card/80 text-card-foreground shadow-soft">
         <div className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-base font-semibold">Preview</h2>
+            <h2 className="text-base font-semibold text-[#f8f8f2]">preview.png</h2>
             <p className="text-sm text-muted-foreground">
               {hasQr ? 'Your generated QR code is ready.' : 'Generate a QR code to preview it here.'}
             </p>
@@ -161,43 +161,43 @@ export default function QRPreview(props: QRPreviewProps) {
               type="button"
               onClick={onDownload}
               disabled={!hasQr || isLoading}
-              className="inline-flex items-center justify-center rounded-md border border-border bg-background px-3 py-2 text-sm font-medium hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center justify-center rounded-md border border-border bg-background px-3 py-2 text-sm font-semibold text-[#f8f8f2] transition hover:border-[#50fa7b]/70 hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Download PNG
+              download
             </button>
 
             <button
               type="button"
               onClick={onCopyImage}
               disabled={!hasQr || isLoading}
-              className="inline-flex items-center justify-center rounded-md border border-border bg-background px-3 py-2 text-sm font-medium hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center justify-center rounded-md border border-border bg-background px-3 py-2 text-sm font-semibold text-[#f8f8f2] transition hover:border-[#8be9fd]/70 hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
               title="Copies the PNG image to clipboard (supported browsers only)."
             >
-              Copy Image
+              copy image
             </button>
 
             <button
               type="button"
               onClick={onCopyDataUrl}
               disabled={!hasQr || isLoading}
-              className="inline-flex items-center justify-center rounded-md border border-border bg-background px-3 py-2 text-sm font-medium hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center justify-center rounded-md border border-border bg-background px-3 py-2 text-sm font-semibold text-[#f8f8f2] transition hover:border-[#ffb86c]/70 hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
               title="Copies the data URL (base64) to clipboard."
             >
-              Copy Data URL
+              copy data
             </button>
           </div>
         </div>
 
-        <div className="border-t border-border p-4">
+        <div className="border-t border-border/80 p-4">
           <div className="flex w-full flex-col items-center justify-center gap-3">
             <div
-              className="grid place-items-center rounded-lg border border-border bg-background"
+              className="grid place-items-center rounded-lg border border-border/80 bg-[#07110f]"
               style={{ width: previewSize, height: previewSize, maxWidth: '100%' }}
             >
               {isLoading ? (
                 <div className="flex flex-col items-center gap-3">
-                  <div className="h-10 w-10 animate-spin rounded-full border-2 border-border border-t-transparent" />
-                  <p className="text-sm text-muted-foreground">Generating…</p>
+                  <div className="h-10 w-10 animate-spin rounded-full border-2 border-border border-t-[#50fa7b]" />
+                  <p className="text-sm text-muted-foreground">rendering...</p>
                 </div>
               ) : hasQr ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -208,7 +208,7 @@ export default function QRPreview(props: QRPreviewProps) {
                 />
               ) : (
                 <p className="px-6 text-center text-sm text-muted-foreground">
-                  No QR generated yet.
+                  awaiting payload
                 </p>
               )}
             </div>
@@ -223,8 +223,8 @@ export default function QRPreview(props: QRPreviewProps) {
                   <p
                     className={[
                       'rounded-md border px-3 py-2 text-sm',
-                      statusTone === 'success' ? 'border-border bg-muted text-foreground' : '',
-                      statusTone === 'info' ? 'border-border bg-muted text-foreground' : '',
+                      statusTone === 'success' ? 'border-[#50fa7b]/50 bg-muted text-[#50fa7b]' : '',
+                      statusTone === 'info' ? 'border-[#8be9fd]/50 bg-muted text-[#8be9fd]' : '',
                       statusTone === 'error'
                         ? 'border-destructive/40 bg-destructive/10 text-destructive'
                         : '',
