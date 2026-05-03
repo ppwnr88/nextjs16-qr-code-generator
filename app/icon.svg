@@ -13,9 +13,9 @@
 >
   <defs>
     <style>
-      .bg { fill: #0b1220; }
-      .fg { fill: #ffffff; }
-      .muted { fill: #93c5fd; opacity: 0.22; }
+      .bg { fill: #07110f; }
+      .fg { fill: #f8f8f2; }
+      .muted { fill: #50fa7b; opacity: 0.34; }
     </style>
   </defs>
 

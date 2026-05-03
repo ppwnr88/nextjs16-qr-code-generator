@@ -65,10 +65,18 @@ export default function Page() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6 lg:py-10">
         <section className="terminal-glow overflow-hidden rounded-lg border border-border/80 bg-card/95 backdrop-blur">
           <div className="flex items-center justify-between border-b border-border/70 bg-muted/55 px-4 py-3">
-            <div className="flex items-center gap-2" aria-hidden="true">
-              <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-              <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
-              <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2" aria-hidden="true">
+                <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+                <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+                <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/icon.svg"
+                alt="gen-qr"
+                className="h-5 w-5 rounded-[5px] border border-border/70 bg-background"
+              />
             </div>
             <p className="text-xs font-medium text-muted-foreground">~/apps/gen-qr</p>
             <p className="hidden text-xs text-[#8be9fd] sm:block">zsh</p>
